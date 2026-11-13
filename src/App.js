@@ -4,11 +4,13 @@ import Login from "./screens/Login";
 import Restaurants from "./screens/Restaurants";
 import RestaurantDetail from "./screens/RestaurantDetail";
 import OnboardDrawer from "./screens/OnboardDrawer";
-import { Grid, Fork, Card, Cog, Plus, Clock, LogOut } from "./components/Icons";
+import Leads from "./screens/Leads";
+import { Grid, Fork, Card, Cog, Plus, Clock, LogOut, Globe } from "./components/Icons";
 
 const TABS = [
   { id: "overview", label: "Overview", icon: <Grid /> },
   { id: "restaurants", label: "Restaurants", icon: <Fork /> },
+  { id: "leads", label: "Leads", icon: <Globe /> },
   { id: "billing", label: "Billing", icon: <Card /> },
   { id: "settings", label: "Settings", icon: <Cog /> },
 ];
@@ -72,6 +74,8 @@ export default function App() {
             ) : (
               <Restaurants key={refreshKey} onOpen={setDetailId} />
             )
+          ) : tab === "leads" ? (
+            <Leads />
           ) : (
             <div className="placeholder">
               <Clock className="big" />
