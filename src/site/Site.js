@@ -3,6 +3,7 @@ import "./site.css";
 import { DEMO_URL, PRICING } from "./config";
 import { gbp, savings } from "./savings";
 import DemoForm from "./DemoForm";
+import DeviceShowcase from "./DeviceShowcase";
 
 // The public MenuDock website (menudock.com). The admin console lives at /admin.
 export default function Site() {
@@ -14,6 +15,7 @@ export default function Site() {
         <Calculator />
         <HowItWorks />
         <Features />
+        <Standard />
         <Pricing />
         <Faq />
         <section className="section demo" id="demo">
@@ -172,7 +174,7 @@ function Calculator() {
 
 function HowItWorks() {
   const steps = [
-    ["We set you up", "Your ordering website on your own web address, your menu and photos, and a kitchen tablet posted to you ready to plug in."],
+    ["We set you up", "Your ordering website on your own web address, your own loyalty app for customers' phones, your menu and photos, and a kitchen tablet posted to you ready to plug in."],
     ["Customers order direct", "From your website or your own loyalty app. They pay by card and the money goes straight to your Stripe account."],
     ["You cook, they track", "The tablet rings for every new order. One tap moves it on, and your customer follows it live with an order number."],
   ];
@@ -195,13 +197,19 @@ function HowItWorks() {
   );
 }
 
+// The three things that make MenuDock different, shown with the device picture.
 const FEATURES = [
-  ["🌐", "Your own ordering website", "Your name, colours, logo and menu on your own domain. Collection and delivery, paid by card."],
-  ["📟", "Kitchen tablet", "Every new order appears instantly with a loud alarm. One tap: preparing, ready or out for delivery, done."],
-  ["📍", "Live order tracking", "Customers get an order number and watch it move from received to ready, so the phone stops ringing."],
+  ["🌐", "Your own ordering website", "Your name, colours, logo and menu on your own web address. Customers order for collection or delivery and pay by card."],
+  ["📟", "Kitchen tablet", "Every new order appears instantly with a loud alarm. One tap moves it on: preparing, ready or out for delivery, done."],
+  ["⭐", "Your own loyalty app", "An app with your name on it. Customers order, track their food and earn points on every order, so they come back to you."],
+];
+
+// Included by default, but expected rather than the reason to switch.
+const STANDARD = [
+  ["📍", "Live order tracking", "Every order gets a number, and customers watch it move from received to ready, so the phone stops ringing."],
   ["🍽️", "Menu control", "Change items, prices and photos from the tablet in seconds. Upload a photo or PDF of your menu and it becomes your online menu."],
-  ["⭐", "Your own loyalty app", "Customers order, track and earn points on every order, in an app with your name on it, so they come back to you."],
   ["📇", "Your customer data", "Names, emails and numbers belong to you, not to a marketplace, so you can bring customers back."],
+  ["💷", "Paid straight to your bank", "Customers pay by card through Stripe, and the money goes to your own account. We never hold your takings."],
 ];
 
 function Features() {
@@ -210,12 +218,35 @@ function Features() {
       <div className="wrap">
         <p className="eyebrow">Everything included</p>
         <h2>One package. Your brand on all of it.</h2>
-        <div className="features">
+        <div className="features three">
           {FEATURES.map(([icon, title, body]) => (
             <div className="feature" key={title}>
               <span className="feature-icon" aria-hidden="true">{icon}</span>
               <h3>{title}</h3>
               <p>{body}</p>
+            </div>
+          ))}
+        </div>
+        <DeviceShowcase />
+      </div>
+    </section>
+  );
+}
+
+function Standard() {
+  return (
+    <section className="section" id="standard">
+      <div className="wrap">
+        <p className="eyebrow">Included as standard</p>
+        <h2>The everyday essentials, built in</h2>
+        <div className="standard">
+          {STANDARD.map(([icon, title, body]) => (
+            <div className="std" key={title}>
+              <span className="std-icon" aria-hidden="true">{icon}</span>
+              <div>
+                <h3>{title}</h3>
+                <p>{body}</p>
+              </div>
             </div>
           ))}
         </div>
@@ -243,7 +274,7 @@ function Features() {
 
 function Pricing() {
   return (
-    <section className="section" id="pricing">
+    <section className="section alt" id="pricing">
       <div className="wrap">
         <p className="eyebrow">Pricing</p>
         <h2>Simple, and a fraction of app commission</h2>
@@ -295,7 +326,7 @@ const FAQS = [
 
 function Faq() {
   return (
-    <section className="section alt" id="faq">
+    <section className="section" id="faq">
       <div className="wrap narrow">
         <p className="eyebrow">FAQ</p>
         <h2>Questions restaurants ask us</h2>
