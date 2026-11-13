@@ -233,3 +233,12 @@ svg .baseline { stroke: var(--axis); stroke-width: 1; }
   .rrow > .col-orders, .rrow > .col-status, .rrow > .col-earn { display: none; }
   .rhead { display: none; }
 }
+
+/* Leads */
+.leads { display: grid; gap: 14px; max-width: 760px; }
+.lead-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.lead-head select { border: 1px solid var(--border-strong); background: var(--surface); color: var(--ink); border-radius: 8px; padding: 7px 10px; font-family: inherit; }
+.lead-msg { margin: 10px 0 0; color: var(--muted); font-size: .88rem; white-space: pre-wrap; }
+
+/* The logo's "Menu" is white for the dark sidebar; on the light login card it needs ink. */
+.login .logo .name { color: var(--ink); }

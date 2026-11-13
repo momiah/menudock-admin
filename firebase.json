@@ -1,0 +1,18 @@
+{
+  "hosting": {
+    "site": "menudock",
+    "public": "build",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [{ "source": "**", "destination": "/index.html" }],
+    "headers": [
+      {
+        "source": "/admin{,/**}",
+        "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+      },
+      {
+        "source": "/static/**",
+        "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      }
+    ]
+  }
+}
