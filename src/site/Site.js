@@ -87,7 +87,7 @@ function Hero() {
   return (
     <section className="hero">
       <div className="wrap hero-grid">
-        <div>
+        <div className="hero-copy">
           <p className="eyebrow">For independent restaurants &amp; takeaways</p>
           <h1>Your orders. Your customers. <em>Your profit.</em></h1>
           <p className="lead">
@@ -98,7 +98,7 @@ function Hero() {
             <a className="btn-site primary" href="#demo">Book a demo</a>
             <a className="btn-site ghost" href={DEMO_URL} target="_blank" rel="noreferrer">Try a live demo restaurant ↗</a>
           </div>
-          <p className="fine">Set up for you · Card payments straight to your bank · Keep the apps for new customers</p>
+          <p className="fine hero-fine">Set up for you · Card payments straight to your bank · Keep the apps for new customers</p>
         </div>
         <div className="hero-art" aria-hidden="true">
           <div className="phone">
