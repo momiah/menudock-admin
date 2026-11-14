@@ -4,6 +4,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import {
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
@@ -44,9 +45,12 @@ export function AuthProvider({ children }) {
 
   const signIn = (email, password) => signInWithEmailAndPassword(auth, email, password);
   const signOutUser = () => signOut(auth);
+  // Firebase emails a link to choose a new password (it says nothing about
+  // whether the address has an account).
+  const resetPassword = (email) => sendPasswordResetEmail(auth, email);
 
   return (
-    <AuthContext.Provider value={{ user, isAdmin, loading, signIn, signOutUser }}>
+    <AuthContext.Provider value={{ user, isAdmin, loading, signIn, signOutUser, resetPassword }}>
       {children}
     </AuthContext.Provider>
   );

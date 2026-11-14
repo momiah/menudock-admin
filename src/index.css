@@ -242,3 +242,5 @@ svg .baseline { stroke: var(--axis); stroke-width: 1; }
 
 /* The logo's "Menu" is white for the dark sidebar; on the light login card it needs ink. */
 .login .logo .name { color: var(--ink); }
+.login .linkbtn { display: block; margin: 12px auto 0; background: none; border: 0; color: var(--brand); font-weight: 600; font-size: .85rem; padding: 6px; }
+.login .linkbtn:hover { text-decoration: underline; }
