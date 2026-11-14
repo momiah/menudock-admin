@@ -147,7 +147,17 @@
 @media (max-width: 900px) {
   .site .hero-grid, .site .calc, .site .addon, .site .demo-grid { grid-template-columns: 1fr; }
   .site .how, .site .features { grid-template-columns: 1fr 1fr; }
-  .site .hero-art { min-height: 360px; max-width: 460px; }
+  .site .hero-art { min-height: 430px; max-width: 460px; }
+  /* Single column: put the picture straight under the headline, before the
+     description and buttons, so the screen isn't a wall of text. */
+  .site .hero-grid { gap: 0; }
+  .site .hero-copy { display: contents; }
+  .site .hero-copy .eyebrow { order: 1; }
+  .site .hero-copy h1 { order: 2; }
+  .site .hero-art { order: 3; margin: 8px 0 28px; }
+  .site .hero-copy .lead { order: 4; }
+  .site .hero-copy .cta-row { order: 5; margin-top: 18px; }
+  .site .hero-fine { order: 6; }
 }
 @media (max-width: 720px) {
   .site { font-size: 16px; }
@@ -159,7 +169,9 @@
   .site .nav-links.open { display: flex; }
   .site .nav-links a:not(.btn-site) { padding: 12px 0; border-bottom: 1px solid var(--border); }
   .site .nav-links .btn-site { margin-top: 12px; }
-  .site .hero-art { min-height: 390px; }
+  .site .hero-art { min-height: 360px; }
+  .site .hero-fine { display: none; }
+  .site .track-title { font-size: 1.12rem; }
   .site .phone { left: 0; width: 200px; height: 330px; }
   .site .tablet { width: 230px; font-size: .74rem; }
   .site .calc { padding: 18px; }
