@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { doc, setDoc, writeBatch, serverTimestamp, collection } from "firebase/firestore";
+import { doc, getDoc, setDoc, writeBatch, serverTimestamp, collection } from "firebase/firestore";
 import { db } from "../firebase";
 import { uploadImage } from "../lib/upload";
 import { BILLING_DEFAULTS } from "../lib/billing";
@@ -49,6 +49,12 @@ export default function OnboardDrawer({ open, onClose, onSaved }) {
     setBusy(true);
     try {
       const id = slug;
+      // Never overwrite a restaurant that's already set up (its status, Stripe account and menu).
+      if ((await getDoc(doc(db, "restaurants", id))).exists()) {
+        setBusy(false);
+        setErr(`"${id}" already exists. Open it from the list to change it, or pick a different slug.`);
+        return;
+      }
       const theme = {
         colors: { primary: f.primary, secondary: f.secondary, accent: f.accent, background: "#ffffff", text: "#0a0a0a", navBar: "#333333", navBarText: "#ffffff" },
         fonts: { heading: "system-ui, sans-serif", body: "system-ui, sans-serif" },
@@ -161,7 +167,7 @@ export default function OnboardDrawer({ open, onClose, onSaved }) {
               <Field label="Stripe account id"><input value={f.stripeAccountId} onChange={set("stripeAccountId")} placeholder="acct_… (optional now)" /></Field>
               <Field label="Custom domain" full><input value={f.domain} onChange={set("domain")} placeholder="order.client.com (optional)" /></Field>
             </div>
-            <div className="hint">Funds settle to the restaurant's Stripe account; your 5% fee is taken per order. Retainer &amp; setup are billed by you.</div>
+            <div className="hint">Funds settle to the restaurant's Stripe account. Stripe's costs plus your fee are taken per order. Retainer &amp; setup are billed by you. Set up their Stripe account and owner login from the restaurant's page.</div>
           </Section>
 
           <Section n="5" title="Menu">

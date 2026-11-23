@@ -244,3 +244,15 @@ svg .baseline { stroke: var(--axis); stroke-width: 1; }
 .login .logo .name { color: var(--ink); }
 .login .linkbtn { display: block; margin: 12px auto 0; background: none; border: 0; color: var(--brand); font-weight: 600; font-size: .85rem; padding: 6px; }
 .login .linkbtn:hover { text-decoration: underline; }
+
+/* Go live tools on a restaurant's page */
+.golive .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.golive .frow { grid-template-columns: repeat(3, 1fr); margin-top: 10px; }
+.golive .err { color: var(--crit); font-size: .82rem; margin-top: 6px; }
+.golive .linkbox { margin-top: 12px; padding: 12px; border-radius: 10px; background: var(--info-soft); font-size: .86rem; display: grid; gap: 8px; }
+.golive .copyrow { display: flex; gap: 8px; margin-top: 10px; }
+.golive .copyrow input { flex: 1; min-width: 0; border: 1px solid var(--border-strong); background: var(--surface); border-radius: 8px; padding: 9px 11px; font-size: .86rem; color: var(--ink); font-family: inherit; }
+.golive-msg { grid-column: 1 / -1; padding: 10px 14px; border-radius: 10px; font-size: .88rem; font-weight: 600; }
+.golive-msg.ok { background: var(--good-soft); color: var(--good); }
+.golive-msg.err { background: var(--crit-soft); color: var(--crit); }
+@media (max-width: 700px) { .golive .frow { grid-template-columns: 1fr; } }

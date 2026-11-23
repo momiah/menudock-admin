@@ -40,7 +40,7 @@ export function useRestaurants() {
 }
 
 // One restaurant with its menu + performance + earnings.
-export function useRestaurant(id) {
+export function useRestaurant(id, version = 0) {
   const [data, setData] = useState({ restaurant: null, menu: [], loading: true, error: null });
 
   useEffect(() => {
@@ -71,7 +71,7 @@ export function useRestaurant(id) {
       }
     })();
     return () => { alive = false; };
-  }, [id]);
+  }, [id, version]);
 
   return data;
 }
