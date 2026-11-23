@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRestaurant } from "../lib/useData";
 import StatusPill from "../components/StatusPill";
 import AreaChart from "../components/charts/AreaChart";
@@ -6,6 +6,7 @@ import BarChart from "../components/charts/BarChart";
 import { gbp, gbp2, num } from "../lib/format";
 import { websiteUrl, loyaltyUrl, dashboardUrl } from "../lib/links";
 import { ChevronLeft, Globe, Gift, Gauge } from "../components/Icons";
+import GoLive from "./GoLive";
 
 function Mini({ label, value, delta, cls = "" }) {
   return (
@@ -27,7 +28,8 @@ function LinkBtn({ icon, label, sub, href }) {
 }
 
 export default function RestaurantDetail({ id, onBack }) {
-  const { restaurant: r, menu, loading, error } = useRestaurant(id);
+  const [version, setVersion] = useState(0);
+  const { restaurant: r, menu, loading, error } = useRestaurant(id, version);
 
   if (loading) return <div className="placeholder"><div className="spinner" /><div>Loading…</div></div>;
   if (error || !r) return (
@@ -71,7 +73,9 @@ export default function RestaurantDetail({ id, onBack }) {
         <Mini label="Your earnings" value={gbp(earn.total)} delta="setup + retainer + fee" cls="up" />
       </div>
 
-      <div className="grid2">
+      <GoLive restaurant={r} onChanged={() => setVersion((v) => v + 1)} />
+
+      <div className="grid2" style={{ marginTop: 16 }}>
         <div className="card">
           <h3>Revenue</h3>
           <div className="card-sub">Weekly client GMV · last 12 weeks · <span style={{ color: "var(--series-1)", fontWeight: 600 }}>{gbp(perf.gmv)}</span> total</div>
